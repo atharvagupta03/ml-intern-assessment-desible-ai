@@ -1,23 +1,51 @@
-#AI/ML Intern Assignment
+# Trigram Language Model – Assignment
 
-Welcome to the AI/ML Intern assignment! This project is designed to test your core Python skills and your ability to design and build a clean and efficient system from scratch.
+This project implements a trigram language model from scratch.
+A trigram model predicts the next word based on the previous two words.
+The model is trained on text, and it can also continue generating text from a given prompt.
 
-## Quick Start
+The project also includes test cases that use the Alice in Wonderland text to verify the model's behavior.
 
-1. Clone or fork this repository.
-2. Install the required dependencies: `pip install -r requirements.txt`
-3. Open the trigram-assignment/src/ngram_model.py file and implement the TrigramModel class.
-4. Run the tests to check your implementation: `pytest trigram-assignment/tests/test_ngram.py`
+# Project Structure
+
+ml-assignment/
+│
+├── src/
+│   └── ngram_model.py          (main trigram model code)
+│
+├── tests/
+│   ├── test_ngram.py           (test file)
+│   └── alice.txt               (training text used by tests)
+│
+├── evaluation.md               (summary of design choices)
+└── README.md
+
+# How the Model Works
+
+1. The text is cleaned: lowercased, unwanted characters removed, and split into sentences.
+2. Words are extracted from each sentence.
+3. A vocabulary is built from all words in the training text.
+4. The model counts unigrams, bigrams, and trigrams.
+5. During generation, the model looks at the last two words and predicts the next one using probability.
+6. If a trigram continuation is not available, it falls back to bigram counts, and then to unigram counts.
+7. The model supports conditional generation, meaning it can continue from any given prior text.
+
+# How To Run Tests
+
+Go to the project root folder:
+
+1. cd ml-assignment
+
+2. Run tests using pytest:
+
+    PYTHONPATH=. pytest
+
+Or run the test file directly:
+
+    PYTHONPATH=. python3 tests/test_ngram.py
 
 
-## Instructions
+# Requirements
 
-1. Any changes to env should be updated in `requirements.txt`.
-2. Mention the steps to run your code in `trigram-assignment/README.md`.
-3. Feel free to make any changes to the existing code.
-4. Please document your design choices in the `evaluation.md` file. This should be a 1-page summary of the decisions you made and why you made them. And all the steps to for us to test.
-5. Please mind the second task is optional.
-
-
-
-For more detailed instructions, please refer to the `ASSIGNMENT.md` file.
+The project uses only Python's built-in libraries.
+No external dependencies are needed.
